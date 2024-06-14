@@ -1,6 +1,6 @@
 services:
   backup_test:
-    #build: .
+    build: .
     container_name: backup_test
     environment:
       - KEY_ID="YOUR_KEY_ID_HERE"
