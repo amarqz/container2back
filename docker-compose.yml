@@ -1,0 +1,13 @@
+services:
+  backup_test:
+    #build: .
+    container_name: backup_test
+    environment:
+      - KEY_ID="YOUR_KEY_ID_HERE"
+      - BACKUP_PREFIX=backup_test
+      - MAX_BACKUPS=5
+      - CRON_SCHEDULE= 0 0 * * 1
+    volumes:
+      - /path/to/back/up:/srv/to_back_up
+      - /srv/bk:/srv/bk
+      - /path/to/your/home/.gnupg:/root/.gnupg
