@@ -23,7 +23,7 @@ rm "/srv/bk/$ARCHIVE_NAME"
 echo "Backup and encryption completed: /srv/bk/$ENCRYPTED_ARCHIVE_NAME"
 
 # Retain only the most recent backups
-BACKUP_COUNT=$(ls -1t /srv/bk/*.tar.xz.gpg | wc -l)
+BACKUP_COUNT=$(ls -1t /srv/bk/${BACKUP_PREFIX}*.tar.xz.gpg | wc -l)
 if [ $BACKUP_COUNT -gt $MAX_BACKUPS ]; then
-    ls -1t /srv/bk/*.tar.xz.gpg | tail -n +$(($MAX_BACKUPS + 1)) | xargs rm --
+    ls -1t /srv/bk/${BACKUP_PREFIX}*.tar.xz.gpg | tail -n +$(($MAX_BACKUPS + 1)) | xargs rm --
     echo "Removed older backups, keeping only the most recent $MAX_BACKUPS backups."
