@@ -2,7 +2,7 @@ FROM alpine:latest
 
 # Install necessary tools
 RUN apk update && \
-    apk add --no-cache tar xz gnupg bash
+    apk add --no-cache tar xz gnupg bash tzdata
 
 # Add the backup script
 ADD back-up.sh /usr/local/bin/back-up.sh
