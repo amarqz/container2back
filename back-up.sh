@@ -12,18 +12,19 @@ MAX_BACKUPS=${MAX_BACKUPS:-5}
 mkdir -p "$BACKUP_DIR"
 
 # Create the compressed archive using xz
-tar -cJf "/srv/bk/$ARCHIVE_NAME" /srv/to_back_up
+cd /srv && tar -cJf "bk/$ARCHIVE_NAME" to_back_up
 
 # Encrypt the archive using the PGP key
-gpg --encrypt --recipient "$KEY_ID" "/srv/bk/$ARCHIVE_NAME"
+gpg --encrypt --recipient "$KEY_ID" "bk/$ARCHIVE_NAME"
 
 # Optional: Remove the unencrypted archive
-rm "/srv/bk/$ARCHIVE_NAME"
+rm "bk/$ARCHIVE_NAME"
 
 echo "Backup and encryption completed: /srv/bk/$ENCRYPTED_ARCHIVE_NAME"
 
 # Retain only the most recent backups
-BACKUP_COUNT=$(ls -1t /srv/bk/${BACKUP_PREFIX}*.tar.xz.gpg | wc -l)
+BACKUP_COUNT=$(ls -1t bk/${BACKUP_PREFIX}*.tar.xz.gpg | wc -l)
 if [ $BACKUP_COUNT -gt $MAX_BACKUPS ]; then
-    ls -1t /srv/bk/${BACKUP_PREFIX}*.tar.xz.gpg | tail -n +$(($MAX_BACKUPS + 1)) | xargs rm --
+    ls -1t bk/${BACKUP_PREFIX}*.tar.xz.gpg | tail -n +$(($MAX_BACKUPS + 1)) | xargs rm --
     echo "Removed older backups, keeping only the most recent $MAX_BACKUPS backups."
+fi
