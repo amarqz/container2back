@@ -8,9 +8,6 @@ ARCHIVE_NAME="${BACKUP_PREFIX}_$DATE.tar.xz"
 ENCRYPTED_ARCHIVE_NAME="$ARCHIVE_NAME.gpg"
 MAX_BACKUPS=${MAX_BACKUPS:-5}
 
-# Create the backup directory if it doesn't exist
-mkdir -p "$BACKUP_DIR"
-
 # Create the compressed archive using xz
 cd /srv && tar -cJf "bk/$ARCHIVE_NAME" to_back_up
 
