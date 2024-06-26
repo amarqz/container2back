@@ -8,7 +8,11 @@ services:
       - BACKUP_PREFIX=backup_test
       - MAX_BACKUPS=5
       - CRON_SCHEDULE= 0 0 * * 1
+      - DESTINATION=user@example.org
+      - REMOTE_PORT=22
+      - REMOTE_LOCATION=path/to/your/backups
     volumes:
       - /path/to/back/up:/srv/to_back_up
       - /srv/bk:/srv/bk
       - /path/to/your/home/.gnupg:/root/.gnupg
+      - /path/to/your/home/.ssh:/root/.ssh
