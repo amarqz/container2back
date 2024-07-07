@@ -11,6 +11,7 @@ services:
       - DESTINATION=user@example.org
       - REMOTE_PORT=22
       - REMOTE_LOCATION=path/to/your/backups
+    restart: unless-stopped
     volumes:
       - /path/to/back/up:/srv/to_back_up
       - /srv/bk:/srv/bk
