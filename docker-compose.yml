@@ -1,6 +1,6 @@
 services:
   backup_test:
-    build: .
+    image: ghcr.io/amarqz/container2back:latest
     container_name: backup_test
     environment:
       - TZ=Etc/UTC
