@@ -24,7 +24,7 @@ echo "[$(date +"%d/%m/%Y %H:%M:%S")] Created compressed folder."
 gpg --encrypt --recipient "$KEY_ID" "bk/$ARCHIVE_NAME"
 echo "[$(date +"%d/%m/%Y %H:%M:%S")] Compressed folder successfully encrypted."
 
-# Optional: Remove the unencrypted archive
+# Remove the unencrypted archive
 rm "bk/$ARCHIVE_NAME"
 
 if [ -n $DESTINATION ]; then
